@@ -25,6 +25,7 @@ const width = reactive({
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: inset 0px 6px 5px 0px rgba(255,255,255,0.58);
     span {
         background: white;
         border: 1px solid black;
