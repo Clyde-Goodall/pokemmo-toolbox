@@ -2,7 +2,7 @@
 <template>
   <main>
     <i>PokeMMO Toolbox :) </i><br><br>
-    Handy tools to make your in-game life a little easier.
+    
   </main>
 </template>
 
