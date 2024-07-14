@@ -50,36 +50,45 @@
           <div class="stats">
             <div class="stat-row">
               <!-- HP -->
-              <input type="text" class="readout" disabled :value="item.mon.calculatedStats.hp" />
+
+              <input type="text" class="iv-val" :value="item.mon.ivSpread.hp" v-on:input="item.calculate()"/>
+              <input type="text" class="ev-val" :value="item.mon.evSpread.hp" v-on:input="item.calculate()"/>
+
               <ProgressBar :id="item.mon.id" stat="hp"/>
             </div>
             <div class="stat-row">
               <!-- Attack -->
-              <input type="text" class="readout" disabled :value="item.mon.calculatedStats.attack" />
+              <input type="text" class="iv-val" :value="item.mon.ivSpread.atk" v-on:input="item.calculate()"/>
+              <input type="text" class="ev-val" :value="item.mon.evSpread.atk" v-on:input="item.calculate()"/>
               <ProgressBar :id="item.mon.id" stat="attack"/>
 
             </div>
             <div class="stat-row">
               <!-- Defense -->
-              <input type="text" class="readout" disabled :value="item.mon.calculatedStats.defense" />
+
+              <input type="text" class="iv-val" v-model="item.mon.ivSpread.def" v-on:input="item.calculate()"/>
+              <input type="text" class="ev-val" v-model="item.mon.evSpread.def" v-on:input="item.calculate()"/>
               <ProgressBar :id="item.mon.id" stat="defense"/>
 
             </div>
             <div class="stat-row">
               <!-- Special Attack -->
-              <input type="text" class="readout" disabled :value="item.mon.calculatedStats.specialAttack" />
+              <input type="text" class="iv-val" v-model="item.mon.ivSpread.spa" v-on:input="item.calculate()"/>
+              <input type="text" class="ev-val" v-model="item.mon.evSpread.spa" v-on:input="item.calculate()"/>
               <ProgressBar :id="item.mon.id" stat="specialAttack"/>
 
             </div>
             <div class="stat-row">
               <!-- Special Defense -->
-              <input type="text" class="readout "disabled :value="item.mon.calculatedStats.specialDefense" />
+              <input type="text" class="iv-val" v-model="item.mon.ivSpread.spd" v-on:input="item.calculate()"/>
+              <input type="text" class="ev-val" v-model="item.mon.evSpread.spd" v-on:input="item.calculate()"/>
               <ProgressBar :id="item.mon.id" stat="specialDefense"/>
 
             </div>
             <div class="stat-row">
               <!-- Speed -->
-              <input type="text" class="readout" disabled :value="item.mon.calculatedStats.speed" />
+              <input type="text" class="iv-val" v-model="item.mon.ivSpread.spe" v-on:input="item.calculate()"/>
+              <input type="text" class="ev-val" v-model="item.mon.evSpread.spe" v-on:input="item.calculate()" />
               <ProgressBar :id="item.mon.id" stat="speed"/>
 
             </div>

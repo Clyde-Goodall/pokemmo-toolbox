@@ -1,5 +1,5 @@
 <template>
-    <div class="stat-bar" :style="{'width': `${Math.floor(Math.pow(found.mon.calculatedStats[props.stat], .45) * 15)}px`}"></div>
+    <div class="stat-bar" :style="{'width': `${Math.floor(Math.pow(found.mon.calculatedStats[props.stat], .45) * 15)}px`}"><span>{{ found.mon.calculatedStats[props.stat] }}</span></div>
 </template>
 
 <script setup>
@@ -19,8 +19,18 @@ const width = reactive({
 
 </script>
 
-<!-- <style scoped>
+<style scoped>
 .stat-bar {
-    width: v-bind('width.proportional');
+    text-align:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    span {
+        background: white;
+        border: 1px solid black;
+        border-radius: 5px;
+        min-width: 20px;
+        padding: 0rem .2rem;
+    }
 }
-</style> -->
+</style>

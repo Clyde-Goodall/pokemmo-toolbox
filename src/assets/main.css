@@ -77,10 +77,18 @@ input[type="button"]:active {
       height: min-content;
     }
     .ev-val {
-      width: 3ch;
+      width: 6ch;
+      font-size: 8pt;
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+      border-left: none;
+
     }
     .iv-val {
-      width: 2ch;
+      font-size: 8pt;
+      width: 5ch;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
     }
   }
 
