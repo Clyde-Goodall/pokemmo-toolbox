@@ -1,0 +1,99 @@
+@import './base.css';
+  
+input {
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  padding: .3rem .5rem;
+  background: var(--primary-color);
+}
+
+input[type="text"], input[type="number"] {
+  box-shadow: inset 0px 4px 19px -8px rgba(0,0,0,0.43);
+}
+
+input[type="button"]:active {
+  box-shadow: inset 0px 4px 19px -8px rgba(0,0,0,0.43);
+
+}
+
+.items {
+  margin-top: 1rem;
+}
+
+.pkmn-container {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    padding: .5rem;
+    margin-bottom: 1rem;
+    border:1px solid var(--secondary-color);
+    .pkmn-sprite {
+      box-shadow: inset 0px 4px 19px -8px rgba(0,0,0,0.93);
+    }
+
+    .stats {
+      .stat-row {
+        margin: .4rem 0rem;
+        display: flex;
+        flex-direction: row;
+        align-items:center;
+        width: 100%;
+      }
+      margin: .5rem 0rem;
+      .readout {
+        width: 6ch;
+      }
+    }
+    .icon-nature-row {
+      display: grid;
+      grid-template-areas: "a a";
+      grid-auto-columns: min-content;
+      gap: .6rem;
+
+      .level-row {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .natures-dropdown {
+        background: white;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: .3rem .4rem;
+      }
+
+      .natures-dropdown:focus {
+        box-shadow: inset 0px 4px 19px -8px rgba(0,0,0,0.43);
+      }
+    }
+    .level-nature-stack {
+      display: flex;
+      flex-direction:column;
+      justify-content: space-between;
+      align-content: space-between;
+    }
+    .lvl-val {
+      width: 8ch;
+      height: min-content;
+    }
+    .ev-val {
+      width: 3ch;
+    }
+    .iv-val {
+      width: 2ch;
+    }
+  }
+
+  .pkmn-sprite {
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+  }
+.stat-bar {
+  margin: .2rem .4rem;
+  border-radius: 5px;
+  border: 1px solid black;
+  height: 15px;
+  background: orange;
+  transition: all .4s cubic-bezier(.02,.96,.23,.97);
+}
