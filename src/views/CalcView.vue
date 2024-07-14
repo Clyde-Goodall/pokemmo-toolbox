@@ -3,7 +3,7 @@
   <main>
     <div class="calc-container">
       <div class="search-row">
-        <input type="text" ref="name" placeholder="e.g. Breloom" value="breloom"  @keydown="console.log(name.value)"/> <input type="button" @click="addToList()" value="+"/>
+        <input type="text" v-model="name" placeholder="e.g. Breloom"  @keydown="console.log(name.value)"/> <input type="button" @click="addToList()" value="+"/>
       </div>
       <div v-if="pkmn.pokemon.length === 0 "></div>
       <div v-else class="items">
@@ -97,10 +97,10 @@
   import ProgressBar from '../components/ProgressBar.vue';
 
   const pkmn = usePokemonStore();
-  let name = ref('breloom');
+  let name = ref('');
 
   function addToList() {
     pkmn.addMon(name);
-    name.value = ''
+    name.value = '';
   }
 </script>
