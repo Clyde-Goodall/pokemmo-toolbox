@@ -5,7 +5,7 @@ import {Icons, Sprites} from '@pkmn/img';
 import {Generations} from '@pkmn/data';
 const gens = new Generations(Dex);
 
-export const usePokemonStore = defineStore('pokemon', {
+export const useBerryStore = defineStore('berriess', {
   state: () => ({
     id: 0,
     pokemon: [],
@@ -27,11 +27,10 @@ export const usePokemonStore = defineStore('pokemon', {
       this.id++;
     },
     remove(i) {
-      let loc = null;
-      this.pokemon.forEach((val, idx) => {
-        if(val.mon.id === i) loc = idx
+      let loc = -1;
+      this.pokemon.forEach((val, i) => {
+        if(val.mon.id === i) loc = i
       })
-      if(loc == null) return;
       this.pokemon.splice(loc, 1);
     },
   }
@@ -43,7 +42,6 @@ class PokemonBuilder {
     this.mon = {
       name: '',
       id: -1,
-      types:[],
       dexNum: -1,
       level: 50,
       icon: {},
@@ -85,21 +83,14 @@ class PokemonBuilder {
     this.mon.icon.h = 65;
 
     this.mon.baseStats = gens.get(5).species.get(name).baseStats;
-    console.log(gens.get(5).species.get(name).types)
-    this.mon.types = [].concat(gens.get(5).species.get(name).types);
-    for(let [i, item] of this.mon.types.entries()) {
-      this.mon.types[i] = item.toLowerCase()
-      console.log(this.mon.types[i])
-    }
     this.calculate();
-    console.log(this.mon.types)
+
   }
 
   calculate() {
     // this.calculatedStats.
     const curr = this.mon;
-    limitSpreads(0, 31, curr.ivSpread)
-    limitSpreads(0, 252, curr.evSpread)
+    curr.calculatedStats.hp = Math.floor(((2 * curr.baseStats.hp + curr.ivSpread.hp + Math.floor(curr.evSpread.hp / 4)) * curr.level) / 100) + curr.level + 10;
     const genericStat = (which) => {
       const modifiers = natureMultiplier(curr.nature);
       let multiplier = 1.0
@@ -107,11 +98,10 @@ class PokemonBuilder {
         if(which == modifiers.increase) multiplier = 1.1;
         if(which == modifiers.decrease) multiplier = 0.9;
       }
-      console.log(`${which}: (${curr.ivSpread[which]}, ${curr.evSpread[which]})`)
       const output = Math.floor((Math.floor(((2 * curr.baseStats[which] + curr.ivSpread[which] + Math.floor(curr.evSpread[which] / 4)) * curr.level) / 100) + 5) * multiplier);
       return output
     }
-    curr.calculatedStats.hp = Math.floor(((2 * curr.baseStats.hp + curr.ivSpread.hp + Math.floor(curr.evSpread.hp / 4)) * curr.level) / 100) + curr.level + 10;
+
     curr.calculatedStats.attack = genericStat('atk');
     curr.calculatedStats.defense = genericStat('def');
     curr.calculatedStats.specialAttack = genericStat('spa');
@@ -119,13 +109,6 @@ class PokemonBuilder {
     curr.calculatedStats.speed = genericStat('spe');
   }
 };
-
-function limitSpreads(min, max, spread) {
-  for(let k in spread) {
-    if(spread[k] < min) spread[k] = min;
-    if(spread[k] > max) spread[k] = max;
-  }
-}
 
 function natureMultiplier(nature) {
   let multipliers = {

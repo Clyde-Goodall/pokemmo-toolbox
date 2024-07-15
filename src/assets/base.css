@@ -62,3 +62,93 @@ nav {
     box-shadow: inset 4px 4px 19px -8px rgba(0,0,0,0.43);
   }
 }
+
+/* Bug Type */
+.bug {
+  background-color: #A8B820;
+}
+
+/* Dark Type */
+.dark {
+  background-color: #705848;
+}
+
+/* Dragon Type */
+.dragon {
+  background-color: #7038F8;
+}
+
+/* Electric Type */
+.electric {
+  background-color: #F8D030;
+}
+
+/* Fairy Type */
+.fairy {
+  background-color: #EE99AC;
+}
+
+/* Fighting Type */
+.fighting {
+  background-color: #C03028;
+}
+
+/* Fire Type */
+.fire {
+  background-color: #F08030;
+}
+
+/* Flying Type */
+.flying {
+  background-color: #A890F0;
+}
+
+/* Ghost Type */
+.ghost {
+  background-color: #705898;
+}
+
+/* Grass Type */
+.grass {
+  background-color: #78C850;
+}
+
+/* Ground Type */
+.ground {
+  background-color: #E0C068;
+}
+
+/* Ice Type */
+.ice {
+  background-color: #98D8D8;
+}
+
+/* Normal Type */
+.normal {
+  background-color: #A8A878;
+}
+
+/* Poison Type */
+.poison {
+  background-color: #A040A0;
+}
+
+/* Psychic Type */
+.psychic {
+  background-color: #F85888;
+}
+
+/* Rock Type */
+.rock {
+  background-color: #B8A038;
+}
+
+/* Steel Type */
+.steel {
+  background-color: #B8B8D0;
+}
+
+/* Water Type */
+.water {
+  background-color: #6890F0;
+}
