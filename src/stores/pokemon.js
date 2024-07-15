@@ -42,6 +42,7 @@ class PokemonBuilder {
   constructor() {
     this.mon = {
       name: '',
+      nickname: '',
       id: -1,
       types:[],
       dexNum: -1,
@@ -72,6 +73,22 @@ class PokemonBuilder {
         spa: 31,
         spd: 31,
         spe: 31,
+      },
+      evSpreadPrev: {
+        hp: 0,
+        atk: 0,
+        def: 0,
+        spa: 0,
+        spd: 0,
+        spe: 0,
+      },
+      ivSpreadPrev: {
+        hp: 31,
+        atk: 31,
+        def: 31,
+        spa: 31,
+        spd: 31,
+        spe: 31,
       }
     }
   }
@@ -80,6 +97,7 @@ class PokemonBuilder {
     if(gens.get(5).species.get(name) == undefined) return;
     this.mon.id = id;
     this.mon.name = name;
+    this.mon.nickname = name;
     this.mon.icon = Sprites.getPokemon(name, {gen: 'gen5bw'});
     this.mon.icon.w = 65;
     this.mon.icon.h = 65;
@@ -98,8 +116,9 @@ class PokemonBuilder {
   calculate() {
     // this.calculatedStats.
     const curr = this.mon;
-    limitSpreads(0, 31, curr.ivSpread)
-    limitSpreads(0, 252, curr.evSpread)
+    limitSpreads(0, 31, curr.ivSpread, curr.ivSpreadPrev)
+    limitSpreads(0, 252, curr.evSpread, curr.evSpreadPrev)
+
     const genericStat = (which) => {
       const modifiers = natureMultiplier(curr.nature);
       let multiplier = 1.0
@@ -107,6 +126,9 @@ class PokemonBuilder {
         if(which == modifiers.increase) multiplier = 1.1;
         if(which == modifiers.decrease) multiplier = 0.9;
       }
+      curr.ivSpreadPrev[which] = curr.ivSpread[which]
+      curr.evSpreadPrev[which] = curr.evSpread[which]
+
       console.log(`${which}: (${curr.ivSpread[which]}, ${curr.evSpread[which]})`)
       const output = Math.floor((Math.floor(((2 * curr.baseStats[which] + curr.ivSpread[which] + Math.floor(curr.evSpread[which] / 4)) * curr.level) / 100) + 5) * multiplier);
       return output
@@ -120,10 +142,13 @@ class PokemonBuilder {
   }
 };
 
-function limitSpreads(min, max, spread) {
+function limitSpreads(min, max, spread, lastSpread) {
   for(let k in spread) {
+    if(spread[k] !== '') spread[k] = parseInt(spread[k].toString().replace(/\D/g,''));
+    if(spread[k] !== lastSpread[k] && spread[k] < min && spread[k] > max) spread[k] = spread[k]
     if(spread[k] < min) spread[k] = min;
     if(spread[k] > max) spread[k] = max;
+    if(spread[k] === '') spread[k] = 0;
   }
 }
 

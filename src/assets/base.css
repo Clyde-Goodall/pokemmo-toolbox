@@ -1,7 +1,10 @@
 :root {
   --primary-color: white;
   --secondary-color: black;
+  --secondary-border: 2px solid var(--secondary-color);
+  --pad: 1rem;
 }
+
 *,
 *::before,
 *::after {
@@ -52,7 +55,7 @@ nav {
     text-decoration: none;
     color: black;
     padding: .25rem .5rem;
-    border: 1px solid black;
+    border: var(--secondary-border);
     border-radius: 3px;
   }
 

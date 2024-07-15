@@ -3,7 +3,7 @@
   <main>
     <div class="calc-container">
       <div class="search-row">
-        <input type="text" v-model="name" placeholder="e.g. Breloom" /> <input type="button" @click="addToList()" value="+"/>
+        <input type="text" v-model="name" placeholder="e.g. Breloom" /> <input type="button" @click="addToList()" v-on:native.keyup.enter="addToList()" value="+"/>
       </div>
       <div v-if="pkmn.pokemon.length === 0 "></div>
       <div v-else class="items">
@@ -51,7 +51,7 @@
               </select>
             </div>
           </div>
-          <span class="name">{{ item.mon.name }}</span>
+          <input type="text" class="nickname name" v-model="item.mon.nickname" maxlength="12" :style="{'width': `${item.mon.nickname.length + 2}ch`}"/>
           <!-- hp/atk/ef/spatk/spdef/spd and iv/ev modifiers -->
           <div class="stats">
             <div class="stat-row">

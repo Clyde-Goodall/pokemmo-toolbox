@@ -15,7 +15,6 @@
             </div>
            
             <div class="seed-row">
-
                 <div class="seed-col">
                     <label>Plain Dry</label>
                     <input type="number" name="dry" v-model="berrySeeds.dry" min="0" max="3" v-on:input="getBerryType()"/> 
@@ -51,7 +50,6 @@
                     <input type="number" name="sweet" v-model="berrySeeds.sweet" min="0" max="3"/> 
                 </div>
                 <div class="seed-col">
-
                     <label>Very Sweet</label>                 
                     <input type="number" name="verysweet" v-model="berrySeeds.verySweet" min="0" max="3"/> 
                 </div>
