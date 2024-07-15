@@ -15,6 +15,19 @@ input[type="button"]:active {
   box-shadow: inset 0px 4px 19px -8px rgba(0,0,0,0.43);
 
 }
+select {
+  background: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: .3rem .4rem;
+}
+.medium-wide {
+  width: 14ch;
+}
+
+select:focus {
+  box-shadow: inset 0px 4px 19px -8px rgba(0,0,0,0.43);
+}
 
 .items {
   margin-top: 1rem;
@@ -71,16 +84,7 @@ input[type="button"]:active {
         }
       }
 
-      .natures-dropdown {
-        background: white;
-        border: 1px solid black;
-        border-radius: 5px;
-        padding: .3rem .4rem;
-      }
 
-      .natures-dropdown:focus {
-        box-shadow: inset 0px 4px 19px -8px rgba(0,0,0,0.43);
-      }
     }
     .level-nature-stack {
       display: flex;
@@ -138,3 +142,59 @@ input[type="button"]:active {
   background: orange;
   transition: all .4s cubic-bezier(.02,.96,.23,.97);
 }
+
+
+
+
+
+/* berry timer ui */
+.seed-row {
+  display: grid;
+  align-items: start;
+  grid-template-areas: "a a";
+  grid-template-columns: 100px 100px;
+  gap: 1.5rem;
+  margin-bottom: .5rem;
+  input[type="number"] {
+    width: 8ch; 
+  }
+
+
+  .seed-col {
+    label {
+      word-wrap:normal;
+      font-size: 8pt;
+      line-height: .8;
+      margin-bottom: -10px;
+    }
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+ }
+.berry-container {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  padding: .5rem;
+  margin-bottom: 1rem;
+  border:1px solid var(--secondary-color);
+  .pkmn-sprite {
+    box-shadow: inset 0px 4px 19px -8px rgba(0,0,0,0.93);
+  }
+  /* .name {
+    position: relative;
+    top:-11px;
+    border-radius: 5px;
+    background:white;
+    border: 1px solid black;
+    padding: .1rem .2rem;
+    font-size: 7pt;
+    line-height: .4;
+    
+  } */
+ 
+  
+
+}
+

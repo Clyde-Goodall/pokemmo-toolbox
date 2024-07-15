@@ -152,3 +152,18 @@ nav {
 .water {
   background-color: #6890F0;
 }
+
+/* some helper classes */
+
+.mtop {
+  margin-top: 1rem;
+}
+.mright {
+  margin-right: 1rem;
+}
+.mbottom {
+  margin-bottom: 1rem;
+}
+.mleft {
+  margin-left: 1rem;
+}

@@ -5,14 +5,14 @@ import {Icons, Sprites} from '@pkmn/img';
 import {Generations} from '@pkmn/data';
 const gens = new Generations(Dex);
 
-export const useBerryStore = defineStore('berriess', {
+export const useBerryStore = defineStore('berries', {
   state: () => ({
     id: 0,
-    pokemon: [],
+    planter: [],
   }),
   getters: {
     reversedList() {
-      return this.pokemon.slice().reverse()
+      return this.planter.slice().reverse()
     }
   },
   actions: {
@@ -21,22 +21,23 @@ export const useBerryStore = defineStore('berriess', {
 
       if(gens.get(5).species.get(name.value) == undefined) return;
       console.log(name.value)
-      const entry = new PokemonBuilder();
+      const entry = new PlanterBuilder();
       entry.init(this.id, name.value)
-      this.pokemon.push(entry)
+      this.planter.push(entry)
       this.id++;
     },
     remove(i) {
-      let loc = -1;
-      this.pokemon.forEach((val, i) => {
-        if(val.mon.id === i) loc = i
-      })
-      this.pokemon.splice(loc, 1);
+        let loc = null;
+        this.planter.forEach((val, idx) => {
+          if(val.mon.id === i) loc = idx
+        })
+        if(loc == null) return;
+        this.planter.splice(loc, 1);
     },
   }
 })
 
-class PokemonBuilder {
+class PlanterBuilder {
   // mon = {};
   constructor() {
     this.mon = {
@@ -78,7 +79,7 @@ class PokemonBuilder {
     if(gens.get(5).species.get(name) == undefined) return;
     this.mon.id = id;
     this.mon.name = name;
-    this.mon.icon = Sprites.getPokemon(name, {gen: 'gen5bw'});
+    this.mon.icon = Sprites.getPlanter(name, {gen: 'gen5bw'});
     this.mon.icon.w = 65;
     this.mon.icon.h = 65;
 
@@ -215,3 +216,71 @@ function natureMultiplier(nature) {
   return multipliers;
 }
 
+
+class BerryBuilder {
+    // mon = {};
+    constructor() {
+      this.planter = {
+        name: '',
+        route: -1,
+        id: -1,
+        startTime: '',
+        waterLevel: 0,
+        seeds: {
+            bitter: 0,
+            veryBitter: 0,
+            dry: 0,
+            veryDry: 0,
+            sour: 0,
+            verySour: 0,
+            spicy: 0,
+            verySpicy: 0,
+            sweet: 0,
+            verySweet: 0,
+        },
+
+
+      }
+    }
+  
+    init(recipe) {
+  
+      for(let [i, item] of this.mon.types.entries()) {
+        this.mon.types[i] = item.toLowerCase()
+        console.log(this.mon.types[i])
+      }
+      this.calculate();
+      console.log(this.mon.types)
+    }
+  
+    calculate() {
+      // this.calculatedStats.
+      const curr = this.mon;
+      limitSpreads(0, 31, curr.ivSpread)
+      limitSpreads(0, 252, curr.evSpread)
+      const genericStat = (which) => {
+        const modifiers = natureMultiplier(curr.nature);
+        let multiplier = 1.0
+        if(!modifiers.none) {
+          if(which == modifiers.increase) multiplier = 1.1;
+          if(which == modifiers.decrease) multiplier = 0.9;
+        }
+        console.log(`${which}: (${curr.ivSpread[which]}, ${curr.evSpread[which]})`)
+        const output = Math.floor((Math.floor(((2 * curr.baseStats[which] + curr.ivSpread[which] + Math.floor(curr.evSpread[which] / 4)) * curr.level) / 100) + 5) * multiplier);
+        return output
+      }
+      curr.calculatedStats.hp = Math.floor(((2 * curr.baseStats.hp + curr.ivSpread.hp + Math.floor(curr.evSpread.hp / 4)) * curr.level) / 100) + curr.level + 10;
+      curr.calculatedStats.attack = genericStat('atk');
+      curr.calculatedStats.defense = genericStat('def');
+      curr.calculatedStats.specialAttack = genericStat('spa');
+      curr.calculatedStats.specialDefense = genericStat('spd');
+      curr.calculatedStats.speed = genericStat('spe');
+    }
+  };
+  
+  function limitSpreads(min, max, spread) {
+    for(let k in spread) {
+      if(spread[k] < min) spread[k] = min;
+      if(spread[k] > max) spread[k] = max;
+    }
+  }
