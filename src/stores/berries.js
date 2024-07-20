@@ -178,7 +178,6 @@ class BerryBuilder {
       this.planter.berry = berry.value;
       this.planter.recipe = recipe.value
       this.planter.timeToFullyGrowMs = berryProps[berry.value].duration * 60 * 60 * 1000;
-      this.planter.timeToFullyGrowMs = 5 * 60 * 1000
     }
     cycleTimerState() {
       if(!this.planter.timerState) {
