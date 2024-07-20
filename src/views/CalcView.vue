@@ -3,13 +3,23 @@
   <main>
     <div class="calc-container">
       <div class="search-row">
-        <input type="text" v-model="name" placeholder="e.g. Breloom" /> <input type="button" @click="addToList()" v-on:native.keyup.enter="addToList()" value="+"/>
+        <input type="text" v-model="name" placeholder="e.g. Breloom" @keyup.enter="addToList()" /> <input type="button" @click="addToList()" value="+"/>
       </div>
       <div v-if="pkmn.pokemon.length === 0 "></div>
       <div v-else class="items">
         <div class="pkmn-container" v-for="item in pkmn.reversedList" :key="item.mon.id">
           <div class="icon-nature-row">
-            <img class="pkmn-sprite" :src="item.mon.icon.url" :width="item.mon.icon.w" :height="item.mon.icon.h" :alt="item.mon.name" />
+            <!-- <img class="pkmn-sprite" :src="item.mon.icon.url" :width="item.mon.icon.w" :height="item.mon.icon.h" :alt="item.mon.name" /> -->
+            <div class="pkmn-sprite-container" 
+              :style="{
+                'background-image': `url('${item.mon.icon.url}')`,
+                'background-repeat': 'no-repeat',
+                'background-position': 'center',
+                'background-size': '90%',
+                }"
+              >
+              </div>
+
             <div class="level-nature-stack">
               <div class="level-row">
                 <div class="level-type">
@@ -51,7 +61,7 @@
               </select>
             </div>
           </div>
-          <input type="text" class="nickname name" v-model="item.mon.nickname" maxlength="12" :style="{'width': `${item.mon.nickname.length + 2}ch`}"/>
+          <input type="text" class="nickname name" v-model="item.mon.nickname" maxlength="12" :style="{'width': `${Math.max(item.mon.nickname.length + 2, 4)}ch`}"/>
           <!-- hp/atk/ef/spatk/spdef/spd and iv/ev modifiers -->
           <div class="stats">
             <div class="stat-row">
@@ -117,4 +127,5 @@
     pkmn.addMon(name);
     name.value = '';
   }
+
 </script>

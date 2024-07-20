@@ -1,5 +1,5 @@
 <template>
-    <div class="stat-bar" :class="props.stat" :style="{'width': `${Math.floor(Math.pow(found.mon.calculatedStats[props.stat], .45) * 15)}px`}">
+    <div class="stat-bar" :class="props.stat" :style="{'width': `${Math.floor(Math.pow(found.mon.calculatedStats[props.stat], .4) * 15)}px`}">
         <span>{{ found.mon.calculatedStats[props.stat] }}</span>
     </div>
 </template>

@@ -17,8 +17,6 @@ export const usePokemonStore = defineStore('pokemon', {
   },
   actions: {
     addMon(name) {
-      console.log(this.id)
-
       if(gens.get(5).species.get(name.value) == undefined) return;
       console.log(name.value)
       const entry = new PokemonBuilder();
@@ -103,18 +101,16 @@ class PokemonBuilder {
     this.mon.icon.h = 65;
 
     this.mon.baseStats = gens.get(5).species.get(name).baseStats;
-    console.log(gens.get(5).species.get(name).types)
     this.mon.types = [].concat(gens.get(5).species.get(name).types);
     for(let [i, item] of this.mon.types.entries()) {
       this.mon.types[i] = item.toLowerCase()
       console.log(this.mon.types[i])
     }
     this.calculate();
-    console.log(this.mon.types)
   }
 
   calculate() {
-    // this.calculatedStats.
+    // extraneous stuff first
     const curr = this.mon;
     limitSpreads(0, 31, curr.ivSpread, curr.ivSpreadPrev)
     limitSpreads(0, 252, curr.evSpread, curr.evSpreadPrev)

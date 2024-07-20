@@ -2,7 +2,7 @@
 <template>
     <main>
       <div class="planter-container">
-        <div class="search-row">
+        <div class="builder-row">
             <div class="seed-row">
                 <div class="seed-col">
                     <label>Plain Bitter</label>
@@ -13,7 +13,7 @@
                     <input type="number" name="verybitter" v-model="berrySeeds.veryBitter" min="0" max="3" v-on:input="getBerryType()"/> 
                 </div>
             </div>
-           
+    
             <div class="seed-row">
                 <div class="seed-col">
                     <label>Plain Dry</label>
@@ -46,106 +46,155 @@
             </div>
             <div class="seed-row">
                 <div class="seed-col">
-                    <label>Plain Sweet</label>                 
+                    <label>Plain Sweet</label>
                     <input type="number" name="sweet" v-model="berrySeeds.sweet" min="0" max="3"/> 
                 </div>
                 <div class="seed-col">
-                    <label>Very Sweet</label>                 
+                    <label>Very Sweet</label>
                     <input type="number" name="verysweet" v-model="berrySeeds.verySweet" min="0" max="3"/> 
                 </div>
             </div>
-            <select class="berries-dropdown medium-wide mtop mright" v-model="berryType">
-                <option value="berry" disabled selected >Berry</option>
-                <option value="aguav">Aguav</option>
-                <option value="apicot">Apicot</option>
-                <option value="aspear">Aspear</option>
-                <option value="babiri">Babiri</option>
-                <option value="belue">Belue</option>
-                <option value="bluk">Bluk</option>
-                <option value="charti">Charti</option>
-                <option value="cheri">Cheri</option>
-                <option value="chesto">Chesto</option>
-                <option value="chilan">Chilan</option>
-                <option value="chople">Chople</option>
-                <option value="coba">Coba</option>
-                <option value="colbur">Colbur</option>
-                <option value="cornn">Cornn</option>
-                <option value="custap">Custap</option>
-                <option value="durin">Durin</option>
-                <option value="enigma">Enigma</option>
-                <option value="figy">Figy</option>
-                <option value="ganlon">Ganlon</option>
-                <option value="grepa">Grepa</option>
-                <option value="haban">Haban</option>
-                <option value="hondew">Hondew</option>
-                <option value="iapapa">Iapapa</option>
-                <option value="jaboca">Jaboca</option>
-                <option value="kasib">Kasib</option>
-                <option value="kebia">Kebia</option>
-                <option value="kelpsy">Kelpsy</option>
-                <option value="lansat">Lansat</option>
-                <option value="leppa">Leppa</option>
-                <option value="liechi">Liechi</option>
-                <option value="lum">Lum</option>
-                <option value="mago">Mago</option>
-                <option value="magost">Magost</option>
-                <option value="micle">Micle</option>
-                <option value="nanab">Nanab</option>
-                <option value="nomel">Nomel</option>
-                <option value="occa">Occa</option>
-                <option value="oran">Oran</option>
-                <option value="pamtre">Pamtre</option>
-                <option value="passho">Passho</option>
-                <option value="payapa">Payapa</option>
-                <option value="pecha">Pecha</option>
-                <option value="persim">Persim</option>
-                <option value="petaya">Petaya</option>
-                <option value="pinap">Pinap</option>
-                <option value="pomeg">Pomeg</option>
-                <option value="qualot">Qualot</option>
-                <option value="rawst">Rawst</option>
-                <option value="razz">Razz</option>
-                <option value="rindo">Rindo</option>
-                <option value="rowap">Rowap</option>
-                <option value="salac">Salac</option>
-                <option value="shuca">Shuca</option>
-                <option value="spelon">Spelon</option>
-                <option value="sitrus">Sitrus</option>
-                <option value="starf">Starf</option>
-                <option value="tamato">Tamato</option>
-                <option value="tanga">Tanga</option>
-                <option value="wacan">Wacan</option>
-                <option value="watmel">Watmel</option>
-                <option value="wepear">Wepear</option>
-                <option value="wiki">Wiki</option>
-                <option value="yache">Yache</option>
-            </select>
-            <input type="button" @click="addToList()" value="+"/>
+            <div class="seed-row">
+                <div class="seed-col">
+                    <select class="berries-dropdown medium-wide mright" v-model="berryType">
+                        <option value="berry" disabled selected >Berry</option>
+                        <option value="aguav">Aguav</option>
+                        <option value="apicot">Apicot</option>
+                        <option value="aspear">Aspear</option>
+                        <option value="babiri">Babiri</option>
+                        <option value="belue">Belue</option>
+                        <option value="bluk">Bluk</option>
+                        <option value="charti">Charti</option>
+                        <option value="cheri">Cheri</option>
+                        <option value="chesto">Chesto</option>
+                        <option value="chilan">Chilan</option>
+                        <option value="chople">Chople</option>
+                        <option value="coba">Coba</option>
+                        <option value="colbur">Colbur</option>
+                        <option value="cornn">Cornn</option>
+                        <option value="custap">Custap</option>
+                        <option value="durin">Durin</option>
+                        <option value="enigma">Enigma</option>
+                        <option value="figy">Figy</option>
+                        <option value="ganlon">Ganlon</option>
+                        <option value="grepa">Grepa</option>
+                        <option value="haban">Haban</option>
+                        <option value="hondew">Hondew</option>
+                        <option value="iapapa">Iapapa</option>
+                        <option value="jaboca">Jaboca</option>
+                        <option value="kasib">Kasib</option>
+                        <option value="kebia">Kebia</option>
+                        <option value="kelpsy">Kelpsy</option>
+                        <option value="lansat">Lansat</option>
+                        <option value="leppa">Leppa</option>
+                        <option value="liechi">Liechi</option>
+                        <option value="lum">Lum</option>
+                        <option value="mago">Mago</option>
+                        <option value="magost">Magost</option>
+                        <option value="micle">Micle</option>
+                        <option value="nanab">Nanab</option>
+                        <option value="nomel">Nomel</option>
+                        <option value="occa">Occa</option>
+                        <option value="oran">Oran</option>
+                        <option value="pamtre">Pamtre</option>
+                        <option value="passho">Passho</option>
+                        <option value="payapa">Payapa</option>
+                        <option value="pecha">Pecha</option>
+                        <option value="persim">Persim</option>
+                        <option value="petaya">Petaya</option>
+                        <option value="pinap">Pinap</option>
+                        <option value="pomeg">Pomeg</option>
+                        <option value="qualot">Qualot</option>
+                        <option value="rawst">Rawst</option>
+                        <option value="razz">Razz</option>
+                        <option value="rindo">Rindo</option>
+                        <option value="rowap">Rowap</option>
+                        <option value="salac">Salac</option>
+                        <option value="shuca">Shuca</option>
+                        <option value="spelon">Spelon</option>
+                        <option value="sitrus">Sitrus</option>
+                        <option value="starf">Starf</option>
+                        <option value="tamato">Tamato</option>
+                        <option value="tanga">Tanga</option>
+                        <option value="wacan">Wacan</option>
+                        <option value="watmel">Watmel</option>
+                        <option value="wepear">Wepear</option>
+                        <option value="wiki">Wiki</option>
+                        <option value="yache">Yache</option>
+                    </select>
+                </div>
+                <div class="seed-col">
+                    <input type="button" @click="addToList()" value="+"/>
+                </div>
+            </div>
         </div>
-        <div v-if="berries.planter.length === 0 "></div>
+        <div v-if="berries.planters.length === 0 "></div>
         <div v-else class="items">
-          <div class="berry-container" v-for="item in berries.reversedList" :key="item.mon.id">
+          <div class="berry-container" v-for="item in berries.reversedList" :key="item.planter.id">
             <div class="icon-nature-row">
               <!-- <img class="pkmn-sprite" :src="item.mon.icon.url" :width="item.mon.icon.w" :height="item.mon.icon.h" :alt="item.mon.name" /> -->
               <div class="level-nature-stack">
                 <div class="level-row">
-                  <div class="level-type">
-                    <input type="number" class="lvl-val" v-model="item.mon.level" v-on:input="item.calculate()" min="1" max="100"/>
-                    <div class="types">
+                    <div class="flex-center-top flex-gap-sm">
+                        <div class="berry-icon-stack">
+                            <img class="berry-sprite" :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${item.planter.berry}-berry.png`" />
+                            <span class="berry-name">{{ item.planter.berry }}</span>
+                        </div>
+                        <!-- location -->
+                        <select v-model="item.planter.location">
+                            <optgroup label="Hoenn">
+                                <option value="104">Route 104 - (11)</option>
+                                <option value="104">Route 120 - (10)</option>
+                                <option value="104">Route 123 - (12)</option>
+                                <option value="104">Route 104 - (72)</option>
+                            </optgroup>
+                            <optgroup label="Unova">
+                                <option value="mistralton">Mistralton City - (72)</option>
+                                <option value="shrine">Abundant Shrine - (84)</option>
+                            </optgroup>
+                        </select>
                     </div>
-                  </div>
-                  <input type="button" value="x" @click="pkmn.remove(item.mon.id)" />
+                    <!-- delete -->
+                     <div class="button-fix">
+                    <input type="button" value="x" @click="berries.remove(item.planter.id)" />
+                    </div>
                 </div>
-                <!-- natures -->
-                <select class="natures-dropdown" v-model="berry">
-                    
-                </select>
               </div>
             </div>
-            <span class="name">{{ item.mon.name }}</span>
-            <!-- hp/atk/ef/spatk/spdef/spd and iv/ev modifiers -->
+            <!-- progress bars and whatnot -->
             <div class="stats">
-            
+                <div class="label-row">
+                    Water level
+                </div>
+                <div class="stat-row">
+                    <button 
+                        class="water-button"
+                        @click="item.addWater()"
+                    >
+                    </button>
+                    <TimerBar :shown="true" :progress="(item.planter.waterLevel / 5) * 100" color="rgb(83, 170, 246)"/>
+                    <div class="right-label flex-center" v-if="item.planter.lastStartTime !== '' && item.planter.timerState">
+                        {{ item.planter.waterLevel }}/5
+                    </div>
+                </div>
+                <div class="label-row">
+                    Progress
+                </div>
+                <div class="stat-row">
+                    <button 
+                        class="timer-button"
+                        :class="{
+                            'stopped': !item.planter.timerState,
+                            'running': item.planter.timerState,
+                        }"
+                        @click="item.cycleTimerState()"
+                    >
+                    </button>
+                    <TimerBar :shown="true" :progress="item.planter.timerProgressPercent" color="orange"/>
+                    <div class="right-label flex-center" v-if="item.planter.timerState">
+                        <!-- {{ formattedText(item.planter) }} -->
+                    </div>
+                </div>
             </div>
           </div>
         </div>
@@ -155,11 +204,15 @@
    </template>
     
   <script setup>
-    import { ref } from 'vue';
+    import { ref, computed, onMounted } from 'vue';
     import { useBerryStore } from '@/stores/berries';
-    import ProgressBar from '../components/ProgressBar.vue';
-  
+    import TimerBar from '../components/TimerBar.vue';
     const berries = useBerryStore();
+
+    onMounted(() => {
+        setInterval(berries.calculateProgress, 1000)
+    })
+
     let berrySeeds = ref({
         bitter: 0,
         veryBitter: 0,
@@ -174,14 +227,14 @@
     })
 
     let berryType = ref('berry');
-  
     function addToList() {
-      berries.addMon(berry);
-      berryType.value = 'berry';
+        if(berryType.value.includes(['', 'berry'])) return
+        berries.addPlanter(berryType, berrySeeds);
+        berryType.value = 'berry';
     }
 
     function generateHashKey(tastes) {
-    return `${tastes.bitter}-${tastes.veryBitter}-${tastes.dry}-${tastes.veryDry}-${tastes.sour}-${tastes.verySour}-${tastes.spicy}-${tastes.verySpicy}-${tastes.sweet}-${tastes.verySweet}`;
+        return `${tastes.bitter}-${tastes.veryBitter}-${tastes.dry}-${tastes.veryDry}-${tastes.sour}-${tastes.verySour}-${tastes.spicy}-${tastes.verySpicy}-${tastes.sweet}-${tastes.verySweet}`;
     }
 
     function getBerryType() {
@@ -255,11 +308,16 @@
         const hashKey = generateHashKey(berrySeeds.value);
         const output = berryLookup[hashKey]
         if(output) {
+            console.log(output)
             berryType.value = output
             return
         }
-        berryType.value = "berry"
-        
-        console.log(berryType.value)
+        berryType.value = "berry"        
+    }
+
+    async function berrySprite (type) {
+        const str = `https://pokeapi.co/api/v2/item/${type}-berry/`;
+        const res = await fetch(str)
+        return await res.sprites.default;
     }
 </script>
