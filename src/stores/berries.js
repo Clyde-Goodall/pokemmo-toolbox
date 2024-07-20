@@ -153,12 +153,12 @@ class BerryBuilder {
         timerState: false,
         timerWasStarted: false,
         timerProgressPercent: 0,
-        length: 0,
+        timeToFullyGrowMs: 0,
         waterLevel: 2,
         berry: '',
         route: -1,
         id: -1,
-        lastStartTime: null,
+        timeStartedMs: 0,
         recipe: {
             bitter: 0,
             veryBitter: 0,
@@ -177,20 +177,21 @@ class BerryBuilder {
     init(id, berry, recipe) {
       this.planter.berry = berry.value;
       this.planter.recipe = recipe.value
-      this.planter.length = berryProps[berry.value].duration;
+      this.planter.timeToFullyGrowMs = berryProps[berry.value].duration * 60 * 60 * 1000;
+      this.planter.timeToFullyGrowMs = 5 * 60 * 1000
     }
     cycleTimerState() {
       if(!this.planter.timerState) {
         this.planter.timerState = true;
-        this.planter.lastStartTime = new Date()
-        console.log(this.planter.lastStartTime.getHours() )
+        this.planter.timeStartedMs = Date.now()
+        console.log('started timer')
       }
     }
     setProgress() {
 
-      const diff = Date.now() - this.planter.lastStartTime.getMilliseconds();
-      const endTime = new Date(this.planter.lastStartTime + (this.planter.length * 60 *60 * 1000))
-      const percent = (diff / endTime.getMilliseconds) * 100
+      const timeElapsed = Date.now() - this.planter.timeStartedMs;
+      const endTime = this.planter.timeStartedMs + this.planter.timeToFullyGrowMs
+      const percent = (timeElapsed / this.planter.timeToFullyGrowMs) * 100
       console.log(percent);
     }
     formattedText() {

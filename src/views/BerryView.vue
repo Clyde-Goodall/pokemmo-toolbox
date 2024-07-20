@@ -173,7 +173,7 @@
                     >
                     </button>
                     <TimerBar :shown="true" :progress="(item.planter.waterLevel / 5) * 100" color="rgb(83, 170, 246)"/>
-                    <div class="right-label flex-center" v-if="item.planter.lastStartTime !== '' && item.planter.timerState">
+                    <div class="right-label flex-center" v-if="item.planter.timeStartedMs !== '' && item.planter.timerState">
                         {{ item.planter.waterLevel }}/5
                     </div>
                 </div>
