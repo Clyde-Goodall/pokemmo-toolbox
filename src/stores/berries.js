@@ -189,7 +189,6 @@ class BerryBuilder {
     setProgress() {
 
       const timeElapsed = Date.now() - this.planter.timeStartedMs;
-      const endTime = this.planter.timeStartedMs + this.planter.timeToFullyGrowMs
       const percent = (timeElapsed / this.planter.timeToFullyGrowMs) * 100
       console.log(percent);
     }
