@@ -58,6 +58,7 @@
                 <div class="seed-col">
                     <select class="berries-dropdown medium-wide mright" v-model="berryType">
                         <option value="berry" disabled selected >Berry</option>
+                        <option value="test">Test</option>
                         <option value="aguav">Aguav</option>
                         <option value="apicot">Apicot</option>
                         <option value="aspear">Aspear</option>
@@ -181,7 +182,7 @@
                     Progress
                 </div>
                 <div class="stat-row">
-                    <button 
+                    <button
                         class="timer-button"
                         :class="{
                             'stopped': !item.planter.timerState,
@@ -192,7 +193,7 @@
                     </button>
                     <TimerBar :shown="true" :progress="item.planter.timerProgressPercent" color="orange"/>
                     <div class="right-label flex-center" v-if="item.planter.timerState">
-                        <!-- {{ formattedText(item.planter) }} -->
+                        {{ item.formattedText()}}
                     </div>
                 </div>
             </div>
@@ -204,7 +205,7 @@
    </template>
     
   <script setup>
-    import { ref, computed, onMounted } from 'vue';
+    import { ref, computed, onMounted, reactive } from 'vue';
     import { useBerryStore } from '@/stores/berries';
     import TimerBar from '../components/TimerBar.vue';
     const berries = useBerryStore();

@@ -3,11 +3,14 @@ import { defineStore } from 'pinia'
 import {Dex} from '@pkmn/dex';
 import {Icons, Sprites} from '@pkmn/img';
 import {Generations} from '@pkmn/data';
+import { useStorage } from '@vueuse/core';
 const gens = new Generations(Dex);
 
 export const useBerryStore = defineStore('berries', {
   state: () => ({
+    // id: useStorage('berry-id0', 0),
     id: 0,
+    // planters: useStorage('berries', []),
     planters: [],
   }),
   getters: {
@@ -177,8 +180,10 @@ class BerryBuilder {
     init(id, berry, recipe) {
       this.planter.berry = berry.value;
       this.planter.recipe = recipe.value
-      this.planter.timeToFullyGrowMs = berryProps[berry.value].duration * 60 * 60 * 1000;
+      this.planter.timeToFullyGrowMs = berryProps[berry.value].duration * (60 * 60 * 1000);
+      console.log(this.planter.timeToFullyGrowMs)
     }
+    
     cycleTimerState() {
       if(!this.planter.timerState) {
         this.planter.timerState = true;
@@ -186,18 +191,26 @@ class BerryBuilder {
         console.log('started timer')
       }
     }
+
     setProgress() {
 
       const timeElapsed = Date.now() - this.planter.timeStartedMs;
-      const percent = (timeElapsed / this.planter.timeToFullyGrowMs) * 100
-      console.log(percent);
+      this.planter.timerProgressPercent = (timeElapsed / this.planter.timeToFullyGrowMs) * 100;
+      // console.log(this.planter.timerProgressPercent);
     }
-    formattedText() {
 
+    formattedText() {
+      if(this.planter.timerWasStarted) return ''
+      const remainingPercent = ((1 - (this.planter.timerProgressPercent / 100)));
+      const hours = remainingPercent * (this.planter.timeToFullyGrowMs / (60 * 60 * 1000));
+      const minutes = Math.floor((hours % 1) * 60);
+      let timeString = `${Math.floor(hours)}h ${minutes}m`
+      return timeString
     }
   };
   
 const berryProps = {
+  "test":   { "duration": 2 },
   "cheri":  { "duration": 16 },
   "razz":   { "duration": 16 },
   "bluk":   { "duration": 16 },

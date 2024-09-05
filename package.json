@@ -13,6 +13,8 @@
     "@pkmn/data": "^0.9.9",
     "@pkmn/dex": "^0.9.9",
     "@pkmn/img": "^0.2.30",
+    "@vueuse/core": "^10.11.0",
+    "firebase": "^10.12.5",
     "pinia": "^2.1.7",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"

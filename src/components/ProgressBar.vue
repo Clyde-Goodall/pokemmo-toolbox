@@ -1,6 +1,6 @@
 <template>
-    <div class="stat-bar" :class="props.stat" :style="{'width': `${Math.floor(Math.pow(found.mon.calculatedStats[props.stat], .4) * 15)}px`}">
-        <span>{{ found.mon.calculatedStats[props.stat] }}</span>
+    <div class="stat-bar" :class="props.stat" :style="{'width': `${Math.floor(Math.pow(found.calculatedStats[props.stat], .4) * 15)}px`}">
+        <span>{{ found.calculatedStats[props.stat] }}</span>
     </div>
 </template>
 
@@ -12,10 +12,10 @@ const props = defineProps(['id', 'stat'])
 
 const maxWidth = 300;
 const found = pkmn.pokemon.find(val => {
-    if(val.mon.id === props.id) return val;
+    if(val.id === props.id) return val;
 })
 const width = reactive({
-    proportional: `${Math.floor(Math.sqrt(found.mon.calculatedStats[props.stat] * 0.45)  )}px`
+    proportional: `${Math.floor(Math.sqrt(found.calculatedStats[props.stat] * 0.45)  )}px`
 });
 
 </script>

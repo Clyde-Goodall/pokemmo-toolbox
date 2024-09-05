@@ -7,12 +7,12 @@
       </div>
       <div v-if="pkmn.pokemon.length === 0 "></div>
       <div v-else class="items">
-        <div class="pkmn-container" v-for="item in pkmn.reversedList" :key="item.mon.id">
+        <div class="pkmn-container" v-for="item in pkmn.reversedList" :key="item.id">
           <div class="icon-nature-row">
-            <!-- <img class="pkmn-sprite" :src="item.mon.icon.url" :width="item.mon.icon.w" :height="item.mon.icon.h" :alt="item.mon.name" /> -->
+            <!-- <img class="pkmn-sprite" :src="item.icon.url" :width="item.icon.w" :height="item.icon.h" :alt="item.name" /> -->
             <div class="pkmn-sprite-container" 
               :style="{
-                'background-image': `url('${item.mon.icon.url}')`,
+                'background-image': `url('${item.icon.url}')`,
                 'background-repeat': 'no-repeat',
                 'background-position': 'center',
                 'background-size': '90%',
@@ -23,15 +23,15 @@
             <div class="level-nature-stack">
               <div class="level-row">
                 <div class="level-type">
-                  <input type="number" class="lvl-val" v-model="item.mon.level" v-on:input="item.calculate()" min="1" max="100"/>
+                  <input type="number" class="lvl-val" v-model="item.level" v-on:input="pkmn.calculate(item.id)" min="1" max="100"/>
                   <div class="types">
-                    <div v-for="type in item.mon.types" :key="type" class="type-bar" :class="type">{{ type }}</div>
+                    <div v-for="type in item.types" :key="type" class="type-bar" :class="type">{{ type }}</div>
                   </div>
                 </div>
-                <input type="button" value="x" @click="pkmn.remove(item.mon.id)" />
+                <input type="button" value="x" @click="pkmn.remove(item.id)" />
               </div>
               <!-- natures -->
-              <select class="natures-dropdown" v-model="item.mon.nature" @change="item.calculate()">
+              <select class="natures-dropdown" v-model="item.nature" @change="pkmn.calculate(item.id)">
                 <option value="" disabled selected>Select Nature</option>
                 <option value="Adamant">Adamant(+Atk/-SpAtk)</option>
                 <option value="Bashful">Bashful(Neutral)</option>
@@ -61,50 +61,50 @@
               </select>
             </div>
           </div>
-          <input type="text" class="nickname name" v-model="item.mon.nickname" maxlength="12" :style="{'width': `${Math.max(item.mon.nickname.length + 2, 4)}ch`}"/>
+          <input type="text" class="nickname name" v-model="item.nickname" maxlength="12" :style="{'width': `${Math.max(item.nickname.length + 2, 4)}ch`}"/>
           <!-- hp/atk/ef/spatk/spdef/spd and iv/ev modifiers -->
           <div class="stats">
             <div class="stat-row">
               <!-- HP -->
 
-              <input type="text" class="iv-val" v-model="item.mon.ivSpread.hp" v-on:input="item.calculate()" min="0" max="31"/>
-              <input type="text" class="ev-val" v-model="item.mon.evSpread.hp" v-on:input="item.calculate()" min="0" max="252"/>
+              <input type="text" class="iv-val" v-model="item.ivSpread.hp" v-on:input="pkmn.calculate(item.id)" min="0" max="31"/>
+              <input type="text" class="ev-val" v-model="item.evSpread.hp" v-on:input="pkmn.calculate(item.id)" min="0" max="252"/>
 
-              <ProgressBar :id="item.mon.id" stat="hp"/>
+              <ProgressBar :id="item.id" stat="hp"/>
             </div>
             <div class="stat-row">
               <!-- Attack -->
-              <input type="text" class="iv-val" v-model="item.mon.ivSpread.atk" v-on:input="item.calculate()" min="0" max="31"/>
-              <input type="text" class="ev-val" v-model="item.mon.evSpread.atk" v-on:input="item.calculate()" min="0" max="252"/>
-              <ProgressBar :id="item.mon.id" stat="attack"/>
+              <input type="text" class="iv-val" v-model="item.ivSpread.atk" v-on:input="pkmn.calculate(item.id)" min="0" max="31"/>
+              <input type="text" class="ev-val" v-model="item.evSpread.atk" v-on:input="pkmn.calculate(item.id)" min="0" max="252"/>
+              <ProgressBar :id="item.id" stat="attack"/>
 
             </div>
             <div class="stat-row">
               <!-- Defense -->
-              <input type="text" class="iv-val" v-model="item.mon.ivSpread.def" v-on:input="item.calculate()" min="0" max="31"/>
-              <input type="text" class="ev-val" v-model="item.mon.evSpread.def" v-on:input="item.calculate()" min="0" max="252"/>
-              <ProgressBar :id="item.mon.id" stat="defense"/>
+              <input type="text" class="iv-val" v-model="item.ivSpread.def" v-on:input="pkmn.calculate(item.id)" min="0" max="31"/>
+              <input type="text" class="ev-val" v-model="item.evSpread.def" v-on:input="pkmn.calculate(item.id)" min="0" max="252"/>
+              <ProgressBar :id="item.id" stat="defense"/>
 
             </div>
             <div class="stat-row">
               <!-- Special Attack -->
-              <input type="text" class="iv-val" v-model="item.mon.ivSpread.spa" v-on:input="item.calculate()" min="0" max="31"/>
-              <input type="text" class="ev-val" v-model="item.mon.evSpread.spa" v-on:input="item.calculate()" min="0" max="252"/>
-              <ProgressBar :id="item.mon.id" stat="specialAttack"/>
+              <input type="text" class="iv-val" v-model="item.ivSpread.spa" v-on:input="pkmn.calculate(item.id)" min="0" max="31"/>
+              <input type="text" class="ev-val" v-model="item.evSpread.spa" v-on:input="pkmn.calculate(item.id)" min="0" max="252"/>
+              <ProgressBar :id="item.id" stat="specialAttack"/>
 
             </div>
             <div class="stat-row">
               <!-- Special Defense -->
-              <input type="text" class="iv-val" v-model="item.mon.ivSpread.spd" v-on:input="item.calculate()" min="0" max="31"/>
-              <input type="text" class="ev-val" v-model="item.mon.evSpread.spd" v-on:input="item.calculate()" min="0" max="252"/>
-              <ProgressBar :id="item.mon.id" stat="specialDefense"/>
+              <input type="text" class="iv-val" v-model="item.ivSpread.spd" v-on:input="pkmn.calculate(item.id)" min="0" max="31"/>
+              <input type="text" class="ev-val" v-model="item.evSpread.spd" v-on:input="pkmn.calculate(item.id)" min="0" max="252"/>
+              <ProgressBar :id="item.id" stat="specialDefense"/>
 
             </div>
             <div class="stat-row">
               <!-- Speed -->
-              <input type="text" class="iv-val" v-model="item.mon.ivSpread.spe" v-on:input="item.calculate()" min="0" max="31"/>
-              <input type="text" class="ev-val" v-model="item.mon.evSpread.spe" v-on:input="item.calculate()" min="0" max="252"/>
-              <ProgressBar :id="item.mon.id" stat="speed"/>
+              <input type="text" class="iv-val" v-model="item.ivSpread.spe" v-on:input="pkmn.calculate(item.id)" min="0" max="31"/>
+              <input type="text" class="ev-val" v-model="item.evSpread.spe" v-on:input="pkmn.calculate(item.id)" min="0" max="252"/>
+              <ProgressBar :id="item.id" stat="speed"/>
 
             </div>
           </div>

@@ -354,7 +354,7 @@ select:focus {
     color: var(--primary-color);
     border-radius: 5px;
     padding: .2rem .6rem;
-    width: 35px;
+    width: 90px;
   }
 
   .icon-nature-row {
@@ -455,7 +455,7 @@ select:focus {
 }
 
 .timer-bar {
-  width: 200px;
+  width: 150px;
   margin: .2rem .4rem;
   border-radius: 5px;
   border: var(--secondary-border);
