@@ -136,7 +136,7 @@
               <!-- <img class="pkmn-sprite" :src="item.mon.icon.url" :width="item.mon.icon.w" :height="item.mon.icon.h" :alt="item.mon.name" /> -->
               <div class="level-nature-stack">
                 <div class="level-row">
-                    <div class="flex-center-top flex-gap-sm">
+                    <div class="flex-center-top gap-sm">
                         <div class="berry-icon-stack">
                             <img class="berry-sprite" :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${item.planter.berry}-berry.png`" />
                             <span class="berry-name">{{ item.planter.berry }}</span>

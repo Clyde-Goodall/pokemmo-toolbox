@@ -19,10 +19,22 @@ input {
   justify-content: center;
   align-items: start;
 }
-.flex-gap-sm {
-  gap: 1rem;
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
 }
 
+.gap-sm {
+  gap: .5rem;
+}
+.clamp-width {
+  width: clamp(12rem, 50%, 300px);
+}
 input[type="text"], input[type="number"] {
   box-shadow: inset 0px 4px 19px -8px rgba(0,0,0,0.43);
 }
@@ -102,7 +114,6 @@ select:focus {
       height: 68px;
       box-shadow: inset 0px 4px 19px -8px rgba(0,0,0,0.93);
     }
-
     input[type="text"].nickname {
       position: relative;
       top:-11px;
@@ -208,7 +219,14 @@ select:focus {
     border-radius: 5px;
   }
 
-.stat-bar {
+  .ability-and-item-row {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    width: clamp(7rem, 50%, 300px);
+  }
+
+  .stat-bar {
     width: 200px;
     margin: .2rem .4rem;
     border-radius: 5px;

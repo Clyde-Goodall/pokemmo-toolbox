@@ -2,17 +2,19 @@
 <template>
   <main>
     <div class="calc-container">
-      <div class="search-row">
-        <input type="text" list="pokemon-complete" v-model="name" placeholder="e.g. Breloom" @keyup.enter="addToList()" /> <input type="button" @click="addToList()" value="+"/>
+      <div class="search-row flex-col gap-sm">
+        <div class="flex-row gap-sm">
+          <input type="text" list="pokemon-complete" v-model="name" placeholder="e.g. Breloom" @keyup.enter="addToList()" />
+          <input type="button" @click="addToList()" value="+"/>
+        </div>
         <datalist id="pokemon-complete">
           <option v-for="l in datalistItems(name)" :key="l" :value="l"/>
         </datalist>
-        <!-- <input type="text" v-model="searchString" placeholder="Search" @keyup.enter="search()" /> -->
-
+        <input class="clamp-width" type="text" v-model="searchString" placeholder="Search" @keyup.enter="search()" />
       </div>
       <div v-if="pkmn.pokemon.length === 0 "></div>
       <div v-else class="items">
-        <div class="pkmn-container" v-for="item in pkmn.reversedList" :key="item.id">
+        <div class="pkmn-container" v-for="item in pkmn.filteredList(searchString)" :key="item.id">
           <div class="icon-nature-row">
             <!-- <img class="pkmn-sprite" :src="item.icon.url" :width="item.icon.w" :height="item.icon.h" :alt="item.name" /> -->
             <div class="pkmn-sprite-container" 
@@ -67,11 +69,17 @@
             </div>
           </div>
           <input type="text" class="nickname name" v-model="item.nickname" maxlength="12" :style="{'width': `${Math.max(item.nickname.length + 2, 4)}ch`}"/>
+          <div class="ability-and-item-row"> <!-- ability and held item, need autosuggest for both -->
+            <select name="ability" v-model="item.ability">
+              <option value="" disabled selected>Select Ability</option>
+              <option v-for="ability in item.availableAbilities" :key="ability" :value="ability">{{ ability }}</option>
+            </select>
+            <input type="text" name="item" placeholder="Held item" v-model="item.heldItem" maxlength="30" />
+          </div>
           <!-- hp/atk/ef/spatk/spdef/spd and iv/ev modifiers -->
           <div class="stats">
             <div class="stat-row">
               <!-- HP -->
-
               <input type="text" class="iv-val" v-model="item.ivSpread.hp" v-on:input="pkmn.calculate(item.id)" min="0" max="31"/>
               <input type="text" class="ev-val" v-model="item.evSpread.hp" v-on:input="pkmn.calculate(item.id)" min="0" max="252"/>
 
@@ -125,21 +133,30 @@
   import { usePokemonStore } from '@/stores/pokemon';
   import ProgressBar from '../components/ProgressBar.vue';
   import { pokemon } from '../assets/pokemon.js';
-
+  import {Dex} from '@pkmn/dex';
+  import {Generations} from '@pkmn/data';
+  
+  const gen = new Generations(Dex);
+  console.log(gen.get(9).abilities.get('sharpness'))
   const pkmn = usePokemonStore();
   let name = ref('');
   let searchString = ref('');
-
+  console.log(gen.get(7).items.get('Mind Plate'))
+  
   function addToList() {
     pkmn.addMon(name);
-    name.value = '';
+    name.value = '';  
+  }
+
+  function checkAbilityValidity(str) {
+    return gen.get(9).abilities.get(str) !== undefined
   }
 
   function pkmnListWithFilter() {
-    if(searchString) return pkmn.pokemon.slice().reverse()
+    if(!searchString) return pkmn.pokemon.slice().reverse()
     let filteredList = pkmn.pokemon.filter(p => {
       return p.name.includes(searchString);
-    })
+    });
     return filteredList;
   }
 
@@ -149,7 +166,6 @@
       let P = p.toUpperCase();
       if(P.includes(str.toUpperCase())) list.push(p);
     }
-    console.log(list);
     return list;
   }
 
