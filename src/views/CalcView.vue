@@ -137,11 +137,9 @@
   import {Generations} from '@pkmn/data';
   
   const gen = new Generations(Dex);
-  console.log(gen.get(9).abilities.get('sharpness'))
   const pkmn = usePokemonStore();
   let name = ref('');
   let searchString = ref('');
-  console.log(gen.get(7).items.get('Mind Plate'))
   
   function addToList() {
     pkmn.addMon(name);
