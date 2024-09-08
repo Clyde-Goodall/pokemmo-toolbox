@@ -17,6 +17,11 @@ const router = createRouter({
       path: '/statcalc',
       name: 'calculator',
       component: () => import('../views/CalcView.vue')
+    },
+    {
+      path: '/damagecalc',
+      name: 'damage',
+      component: () => import('../views/DamageView.vue')
     }
   ]
 })

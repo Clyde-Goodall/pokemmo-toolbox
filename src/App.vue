@@ -10,6 +10,9 @@
     </main>
     <footer>
       Clyde Goodall 2023
+      <a href="https://github.com/Clyde-Goodall/pokemmo-toolbox"  target="_">
+        <img src="@/assets/img/github-mark.svg" class="footer-link-svg" alt="Github Repository"/>
+      </a>
     </footer>
 </template>
 
@@ -26,10 +29,20 @@ import { RouterLink, RouterView } from 'vue-router'
 footer {
   background: rgba(0,0,0, .03);
   border-top: 1px solid black;
-  color: darkgray;
+  color: rgb(140, 140, 140);
   text-align: center;
   padding: .5rem;
-  font-size: 8pt;
+  font-size: 10pt;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
+.footer-link-svg {
+  width: 20px;
+  height: 20px;
+}
+
 </style>
 

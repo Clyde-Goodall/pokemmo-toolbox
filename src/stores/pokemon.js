@@ -42,12 +42,13 @@ export const usePokemonStore = defineStore('pokemon', {
       if(gens.get(5).species.get(name.value) == undefined) return;
       // default object defs
       let mon = {
+        id: -1,
         name: '',
         nickname: '',
         heldItem: '',
         availableAbilities: [],
         ability: '',
-        id: -1,
+        moves: [],
         types:[],
         dexNum: -1,
         level: 50,
@@ -139,7 +140,6 @@ export const usePokemonStore = defineStore('pokemon', {
         curr.ivSpreadPrev[which] = curr.ivSpread[which]
         curr.evSpreadPrev[which] = curr.evSpread[which]
   
-        console.log(`${which}: (${curr.ivSpread[which]}, ${curr.evSpread[which]})`)
         const output = Math.floor((Math.floor(((2 * curr.baseStats[which] + curr.ivSpread[which] + Math.floor(curr.evSpread[which] / 4)) * curr.level) / 100) + 5) * multiplier);
         return output
       }
@@ -273,11 +273,9 @@ function filterPmmoJsonAbilities(pkmn) {
   const abilitiesObjArray = pmmoJson.find(p => {
     return p.name.toLowerCase() === pkmn.toLowerCase()
   })
-  console.log(abilitiesObjArray)
   let abilitiesArray = []
   for(let a of abilitiesObjArray.abilities) {
     abilitiesArray.push(a.name);
   }
-  console.log(abilitiesArray);
   return abilitiesArray;
 }

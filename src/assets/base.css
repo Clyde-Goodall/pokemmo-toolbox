@@ -1,4 +1,6 @@
 :root {
+  touch-action: pan-x pan-y;
+  height: 100%;
   --primary-color:  white;
   --secondary-color: black;
   --secondary-border: 2px solid var(--secondary-color);
@@ -40,6 +42,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 
 
 nav {
