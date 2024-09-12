@@ -7,6 +7,9 @@ input {
   padding: .3rem .5rem;
   background: var(--primary-color);
 }
+.calc-container {
+  margin-bottom: 1rem;
+}
 
 .flex-center {
   display: flex;
@@ -27,6 +30,10 @@ input {
 .flex-row {
   display: flex;
   flex-direction: row;
+}
+
+.basic-border {
+  border:var(--secondary-border);
 }
 
 .gap-sm {
@@ -89,6 +96,7 @@ select:focus {
   .items {
     display: flex;
     flex-wrap: wrap;
+    gap: 1rem;
   }
 
   .pkmn-container, .berry-container {
@@ -102,7 +110,7 @@ select:focus {
     height: auto;
     border-radius: 5px;
     padding: .5rem;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
     border:var(--secondary-border);
     .pkmn-sprite {
       box-shadow: inset 0px 4px 19px -8px rgba(0,0,0,0.93);
@@ -113,6 +121,9 @@ select:focus {
       width: 68px;
       height: 68px;
       box-shadow: inset 0px 4px 19px -8px rgba(0,0,0,0.93);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 75%;
     }
     input[type="text"].nickname {
       position: relative;
@@ -150,9 +161,10 @@ select:focus {
       }
     }
     .icon-nature-row {
-      display: grid;
-      grid-template-areas: "a a";
-      grid-auto-columns: min-content;
+      display: flex;
+      flex-direction: row;
+      /* grid-template-areas: "a a";
+      grid-auto-columns: min-content; */
       gap: .6rem;
 
       .level-row {
@@ -171,6 +183,8 @@ select:focus {
       flex-direction:column;
       justify-content: space-between;
       align-content: space-between;
+      flex: 1;
+      width: max-content;
       .level-type {
         gap: .2rem;
         display: flex;
@@ -184,7 +198,7 @@ select:focus {
         width: 50px;
         height: 45%;
         font-size: 6pt;
-        line-height: 1;
+        line-height: 1.2;
         text-shadow: 0px 0px 1px black, 0px 0px 2px black;
         border: var(--secondary-border);
         border-radius: 5px;
@@ -281,12 +295,78 @@ select:focus {
 
 
 
+/* damage calc ui */
+@media screen and (min-width: 801px) {
+  .calc-cards-container {
+    flex-direction: row;
+  }
+  
+}
 
+@media screen and (max-width: 800px) {
+  .calc-cards-container {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 1rem;
+    .card-container {
+ 
+    }
+    .switch-button {
+      transform: rotate(90deg);
+      border-bottom: 2px solid black;
+      border-right: 4px solid black;
+    }
+    .switch-button:active {
+      border-right: 2px solid black;
+    }
+  }
+}
 
+.calc-cards-container {
+  transition: .3s all ease-out;
+  width: 100%;
+  gap: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .fake-pkmn-container {
+      border: 2px dashed rgba(0,0,0, .2);
+      height: 400px;
+  }
+}
 
+.switch-button {
+  border: var(--secondary-border);
+  background: white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  padding: .3rem;
+  border-bottom: 4px solid black;
 
+  .arrow {
+    border-radius: 3px;
+    border-left: 2px solid black;
+    border-top: 2px solid black;
+    width: 13px;
+    height: 13px;
+  }
+  .left {
+    transform: rotate(-45deg);
+  }
+  .right {
+    transform: rotate(135deg);
+  }
+}
 
-
+.switch-button:active {
+  position: relative;
+  top: 2px;
+  border-bottom: 2px solid black;
+  box-shadow: inset 0px 4px 19px -8px rgba(0,0,0,0.43);
+}
 
 
 

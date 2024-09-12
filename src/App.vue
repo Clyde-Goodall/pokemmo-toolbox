@@ -2,7 +2,8 @@
 <template>
     <nav>
       <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/statcalc">Calculator</RouterLink>
+      <RouterLink to="/statcalc">Builder</RouterLink>
+      <RouterLink to="/damagecalc">Damage Calculator</RouterLink>
       <RouterLink to="/berrytimer">Berry Timer</RouterLink>
     </nav>
     <main class="router-view-container">
@@ -11,7 +12,7 @@
     <footer>
       Clyde Goodall 2023
       <a href="https://github.com/Clyde-Goodall/pokemmo-toolbox"  target="_">
-        <img src="@/assets/img/github-mark.svg" class="footer-link-svg" alt="Github Repository"/>
+        <img src="@/assets/img/github-mark.svg" class="footer-link-svg" alt="PokeMMO Toolbox Github Repository Link"/>
       </a>
     </footer>
 </template>
