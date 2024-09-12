@@ -19,7 +19,7 @@ const router = createRouter({
       component: () => import('../views/CalcView.vue')
     },
     {
-      path: '/damagecalc',
+      path: '/damagecalc/:primary?/:secondary?',
       name: 'damage',
       component: () => import('../views/DamageView.vue')
     }
