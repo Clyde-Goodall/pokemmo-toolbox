@@ -48,7 +48,32 @@ export const usePokemonStore = defineStore('pokemon', {
         heldItem: '',
         availableAbilities: [],
         ability: '',
-        moves: [],
+        moves: [
+          {
+            name: '',
+            power: '',
+            type: '',
+            category: ''
+          },
+          {
+            name: '',
+            power: '',
+            type: '',
+            category: ''
+          },
+          {
+            name: '',
+            power: '',
+            type: '',
+            category: ''
+          },
+          {
+            name: '',
+            power: '',
+            type: '',
+            category: ''
+          },
+        ],
         types:[],
         dexNum: -1,
         level: 50,
@@ -120,28 +145,28 @@ export const usePokemonStore = defineStore('pokemon', {
       mon.baseStats = gens.get(5).species.get(name).baseStats;
       mon.types = [].concat(gens.get(5).species.get(name).types);
       for(let [i, item] of mon.types.entries()) {
-        mon.types[i] = item.toLowerCase()
+        mon.types[i] = item.toLowerCase();
       }
       this.calculate(id, mon);
     },
     calculate(id, mon=null) {
       // extraneous stuff first
       const curr = mon === null ? this.getPkmn(id) : mon;
-      limitSpreads(0, 31, curr.ivSpread, curr.ivSpreadPrev)
-      limitSpreads(0, 252, curr.evSpread, curr.evSpreadPrev)
+      limitSpreads(0, 31, curr.ivSpread, curr.ivSpreadPrev);
+      limitSpreads(0, 252, curr.evSpread, curr.evSpreadPrev);
   
       const genericStat = (which) => {
         const modifiers = natureMultiplier(curr.nature);
-        let multiplier = 1.0
+        let multiplier = 1.0;
         if(!modifiers.none) {
           if(which == modifiers.increase) multiplier = 1.1;
           if(which == modifiers.decrease) multiplier = 0.9;
         }
-        curr.ivSpreadPrev[which] = curr.ivSpread[which]
-        curr.evSpreadPrev[which] = curr.evSpread[which]
+        curr.ivSpreadPrev[which] = curr.ivSpread[which];
+        curr.evSpreadPrev[which] = curr.evSpread[which];
   
         const output = Math.floor((Math.floor(((2 * curr.baseStats[which] + curr.ivSpread[which] + Math.floor(curr.evSpread[which] / 4)) * curr.level) / 100) + 5) * multiplier);
-        return output
+        return output;
       }
       curr.calculatedStats.hp = Math.floor(((2 * curr.baseStats.hp + curr.ivSpread.hp + Math.floor(curr.evSpread.hp / 4)) * curr.level) / 100) + curr.level + 10;
       curr.calculatedStats.attack = genericStat('atk');
@@ -156,7 +181,7 @@ export const usePokemonStore = defineStore('pokemon', {
 function limitSpreads(min, max, spread, lastSpread) {
   for(let k in spread) {
     if(spread[k] !== '') spread[k] = parseInt(spread[k].toString().replace(/\D/g,''));
-    if(spread[k] !== lastSpread[k] && spread[k] < min && spread[k] > max) spread[k] = spread[k]
+    if(spread[k] !== lastSpread[k] && spread[k] < min && spread[k] > max) spread[k] = spread[k];
     if(spread[k] < min) spread[k] = min;
     if(spread[k] > max) spread[k] = max;
     if(spread[k] === '') spread[k] = 0;

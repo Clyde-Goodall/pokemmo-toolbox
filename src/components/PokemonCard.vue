@@ -90,6 +90,13 @@
         <ProgressBar :id="pokemonItem.id" stat="speed"/>
       </div>
     </div>
+    <div class="moves-container">
+        <input class="move-input" type="text" v-model="pokemonItem.moves[0].name" placeholder="Move #1"/>
+        <input class="move-input" type="text" v-model="pokemonItem.moves[1].name" placeholder="Move #2" />
+        <input class="move-input" type="text" v-model="pokemonItem.moves[2].name" placeholder="Move #3" />
+        <input class="move-input" type="text" v-model="pokemonItem.moves[3].name" placeholder="Move #4" />
+
+    </div>
   </div>
 </template>
 

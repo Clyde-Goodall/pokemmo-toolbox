@@ -10,7 +10,7 @@
         <datalist id="pokemon-complete">
           <option v-for="l in datalistItems(name)" :key="l" :value="l"/>
         </datalist>
-        <input class="clamp-width" type="text" v-model="searchString" placeholder="Search" @keyup.enter="search()" />
+        <input class="clamp-width" type="text" v-model="searchString" placeholder="Search" />
       </div>
       <div v-if="pkmn.pokemon.length === 0 "></div>
       <div v-else class="items">
@@ -36,6 +36,9 @@
   let searchString = ref('');
   
   function addToList() {
+    if (gen.get(5).species.get(name.value) == undefined) {
+      name.value = datalistItems(name.value)[0];
+    }
     pkmn.addMon(name);
     name.value = '';  
   }

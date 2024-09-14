@@ -34,11 +34,10 @@
                         </datalist>
                     </div>
                 </div>
-                <div class="between-card-options">
+                <div class="between-card-options"> <!-- swap button and arrows -->
                     <button class="switch-button" @click="swap()">
                         <span class="arrow left"></span>
                         <span class="arrow right"></span>
-
                     </button>
                 </div>
             <!-- swap button and/or options also go here in between them -->

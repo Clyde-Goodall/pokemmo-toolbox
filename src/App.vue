@@ -29,7 +29,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 footer {
   background: rgba(0,0,0, .03);
-  border-top: 1px solid black;
+  border-top: 1px solid var(--secondary-color);
   color: rgb(140, 140, 140);
   text-align: center;
   padding: .5rem;

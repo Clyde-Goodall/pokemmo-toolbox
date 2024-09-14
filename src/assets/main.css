@@ -86,6 +86,7 @@ select:focus {
 
   .pkmn-container {
     width: clamp(350px, 25%, 500px);
+    
   }
   .berry-container {
     width: clamp(350px, 25%, 500px);
@@ -224,8 +225,18 @@ select:focus {
       border-top-right-radius: 0px;
       border-bottom-right-radius: 0px;
     }
-
-  }
+    .moves-container {
+      display: flex;
+      gap: .5rem;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+      .move-input {
+        width: 40%;
+        gap: .5rem;
+      }
+    } 
+  }                              
 
   .pkmn-sprite {
     padding: 5px;
@@ -261,7 +272,7 @@ select:focus {
       position: relative;
       left: -2px;
       height: 15px;
-      border: 2px solid black;
+      border: 2px solid var(--secondary-border);
     }
 }
 
@@ -309,16 +320,16 @@ select:focus {
     width: 100%;
     align-items: center;
     gap: 1rem;
-    .card-container {
+    /* .card-container {
  
-    }
+    } */
     .switch-button {
       transform: rotate(90deg);
-      border-bottom: 2px solid black;
+      border-bottom: 2px solid var(--secondary-border);
       border-right: 4px solid black;
     }
     .switch-button:active {
-      border-right: 2px solid black;
+      border-right: 2px solid var(--secondary-border);
     }
   }
 }
@@ -338,7 +349,7 @@ select:focus {
 
 .switch-button {
   border: var(--secondary-border);
-  background: white;
+  background: var(--primary-color);
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -348,8 +359,8 @@ select:focus {
 
   .arrow {
     border-radius: 3px;
-    border-left: 2px solid black;
-    border-top: 2px solid black;
+    border-left: 2px solid var(--secondary-border);
+    border-top: 2px solid var(--secondary-border);
     width: 13px;
     height: 13px;
   }
@@ -364,7 +375,7 @@ select:focus {
 .switch-button:active {
   position: relative;
   top: 2px;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid var(--secondary-border);
   box-shadow: inset 0px 4px 19px -8px rgba(0,0,0,0.43);
 }
 
@@ -482,8 +493,8 @@ select:focus {
         font-size: 8pt;
         line-height: 100%;
         border: var(--secondary-border);
-        background: black;
-        color: white;
+        background: var(--secondary-color);
+        color: var(--primary-color);
         font-weight: bold;
         border-radius: 5px;
         padding: 0rem .3rem;

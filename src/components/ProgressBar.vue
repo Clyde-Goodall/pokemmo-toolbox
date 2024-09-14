@@ -29,10 +29,11 @@ const width = reactive({
     box-shadow: inset 0px 6px 5px 0px rgba(255,255,255,0.58);
 
     span {
-        background: white;
+        background: var(--primary-color);
         border: var(--secondary-border);
-        border-radius: 5px;
+        border-radius: 5px; 
         min-width: 20px;
+        color: var(--secondary-color);
         padding: 0rem .2rem;
     }
 }
