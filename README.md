@@ -1,7 +1,7 @@
 # pokemmotoolbox
 
 Small but growing list of utilities for PokeMMO players.
-Borrowed monsters.json from [IncognitoStuff]](https://github.com/IncognitoStuff/Public/tree/main)
+Borrowed monsters.json from (IncognitoStuff])[https://github.com/IncognitoStuff/Public/tree/main]
 
 ## Features
 * Stat Visualizer
