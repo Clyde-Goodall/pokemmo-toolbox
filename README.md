@@ -1,7 +1,6 @@
 # pokemmotoolbox
 
-Small but growing list of utilities for PokeMMO players.
-Borrowed monsters.json from [IncognitoStuff](https://github.com/IncognitoStuff/Public/tree/main)
+Small but growing list of utilities for PokeMMO players, available [here](https://www.pokemmo-toolbox.vercel.app/). Borrowed monsters.json from [IncognitoStuff](https://github.com/IncognitoStuff/Public/tree/main)
 
 ## Features
 * Stat Visualizer
@@ -23,10 +22,4 @@ npm run dev
 
 ```sh
 npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
 ```
